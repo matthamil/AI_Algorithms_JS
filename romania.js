@@ -273,13 +273,6 @@ for (let i = 0; i < cities.length; i++) {
     Romania.set(cities[i].name, cities[i].nearby)
 }
 
-class step {
-    constructor(action, state) {
-        this.action = action;
-        this.state = state;
-    }
-}
-
 class searchNode {
     constructor(action, state, parent) {
         this.action = action;
@@ -317,7 +310,8 @@ function breadthFirstSearch(initialState, goalTest, actions, successor) {
     // Actions other than push(n) and shift() are prohibited.
     let fringe = [];
     if (goalTest(initialState)) {
-        return new step(null, initialState);
+        console.log("Initial state is the goal state.");
+        return [initialState];
     }
     fringe.push(new searchNode(null, initialState, null));
     let expanded = [];

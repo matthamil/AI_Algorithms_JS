@@ -190,13 +190,6 @@ for (var i = 0; i < cities.length; i++) {
     Romania.set(cities[i].name, cities[i].nearby);
 }
 
-var step = function step(action, state) {
-    _classCallCheck(this, step);
-
-    this.action = action;
-    this.state = state;
-};
-
 var searchNode = (function () {
     function searchNode(action, state, parent) {
         _classCallCheck(this, searchNode);
@@ -242,7 +235,8 @@ function breadthFirstSearch(initialState, goalTest, actions, successor) {
     // Actions other than push(n) and shift() are prohibited.
     var fringe = [];
     if (goalTest(initialState)) {
-        return new step(null, initialState);
+        console.log("Initial state is the goal state.");
+        return [initialState];
     }
     fringe.push(new searchNode(null, initialState, null));
     var expanded = [];
