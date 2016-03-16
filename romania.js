@@ -267,11 +267,19 @@ let cities = [
     }
 ];
 
+// Implementing Romania as a Map()
+
 let Romania = new Map();
 
 for (let i = 0; i < cities.length; i++) {
     Romania.set(cities[i].name, cities[i].nearby)
 }
+
+// searchNodes are created during the algorithm's search.
+// this.action = the action taken to reach this city from the previous
+//     search node
+// this.state = city name
+// this.parent = the previous city in the search
 
 class searchNode {
     constructor(action, state, parent) {
@@ -313,38 +321,61 @@ function breadthFirstSearch(initialState, goalTest, actions, successor) {
         console.log("Initial state is the goal state.");
         return [initialState];
     }
+
+    // Add the initialState to the fringe.
     fringe.push(new searchNode(null, initialState, null));
     let expanded = [];
     while (fringe.length !== 0) {
         console.log("Fringe: " + fringe.map(function(city){
                 return city.state;
             }));
+
+        // Pop an element out of the queue to expand.
         let parent = fringe.shift();
         console.log("Popped: ", parent.state);
         let newChildStates = [];
+
+        // Child states of the current node
         let actionsList = actions(parent.state);
         console.log("Found " + actionsList.length + " successors of " + parent.state + " : "
             + actionsList.map(function(item){
                 return item.name;
             }));
+
+        // Add the node to the expanded list to prevent re-expansion.
         expanded.push(parent.state);
         console.log("Expanded list: ", expanded);
         console.log("\n");
+
+        // Create successors of each node and push them onto the fringe.
         actionsList.forEach(function(action) {
             let newS = successor(parent.state, action);
             let newN = new searchNode(action, newS, parent);
             console.log("CURRENT PATH: ", newN.path());
 
+            // If the goal is found,
+            // returns the path to the goal.
             if (goalTest(newS)) {
                 console.log("FOUND GOAL!", newS);
                 return newN.path();
-            } else if (expanded.indexOf(newS) !== -1) {
+            }
+
+            // If the successor is already expanded,
+            // don't add it to the fringe.
+            else if (expanded.indexOf(newS) !== -1) {
                 console.log("Successor " + newS + " of " + parent.state + " already expanded.");
                 console.log("Not adding " + newS + " to the fringe.");
                 console.log("\n");
-            } else if (fringe.map(function(item){return item.state}).indexOf(newN.state) !== -1) {
+            }
+
+            // If the successor is already in the fringe,
+            // don't add it to the fringe again.
+            else if (fringe.map(function(item){return item.state}).indexOf(newN.state) !== -1) {
                 console.log(newS + " is already in the fringe.");
-            } else {
+            }
+
+            // Push new successors to the fringe.
+            else {
                 console.log("Discovered " + newN.state + " with step cost "
                     + action.cost + " from " + parent.state);
                 console.log("Pushing to fringe: " + newS);
