@@ -266,8 +266,6 @@ function breadthFirstSearch(initialState, goalTest, actions, successor) {
             var newN = new searchNode(action, newS, parent);
             console.log("CURRENT PATH: ", newN.path());
 
-            // Testing
-
             if (goalTest(newS)) {
                 console.log("FOUND GOAL!", newS);
                 return newN.path();
@@ -281,9 +279,6 @@ function breadthFirstSearch(initialState, goalTest, actions, successor) {
                 console.log(newS + " is already in the fringe.");
             } else {
                 console.log("Discovered " + newN.state + " with step cost " + action.cost + " from " + parent.state);
-
-                //expanded.push(newS);
-                //console.log("Expanded: " + expanded);
                 console.log("Pushing to fringe: " + newS);
                 newChildStates.push(newS);
                 fringe.push(newN);
