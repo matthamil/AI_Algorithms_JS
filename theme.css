@@ -1,13 +1,26 @@
+body {
+    background-color: #ecf0f1;
+}
+
 h1 {
     font-size: 2em;
     text-align: center;
     margin-top: 20px;
 }
 
+.attribution {
+    text-align: center;
+    font-size: 0.75em;
+    line-height: 5px;
+    margin-bottom: 20px;
+}
+
 img {
     width: 400px;
     margin: 0 auto;
     display: block;
+    border-radius: 15px;
+    border: 5px solid #2D2D2D;
 }
 
 h2 {

@@ -507,7 +507,7 @@ function setSearchInput() {
 
 function bfs() {
     setSearchInput();
-    if (start.length <= 0 || goal.length <= 0) {
+    if (startCity.length <= 0 || goalCity.length <= 0) {
         document.getElementById("search-result").textContent = "Error: Please enter a valid city.";
     } else {
         document.getElementById("search-result").textContent = breadthFirstSearch(startCity, goalTest, actions, successor);
@@ -516,7 +516,7 @@ function bfs() {
 
 function dfs() {
     setSearchInput();
-    if (start.length <= 0 || goal.length <= 0) {
+    if (startCity.length <= 0 || goalCity.length <= 0) {
         document.getElementById("search-result").textContent = "Error: Please enter a valid city.";
     } else {
         document.getElementById("search-result").textContent = depthFirstSearch(startCity, goalTest, actions, successor);
