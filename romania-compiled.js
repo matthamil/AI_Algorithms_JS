@@ -278,7 +278,7 @@ function breadthFirstSearch(initialState, goalTest, actions, successor) {
         for (var i = 0; i < actionsList.length; i++) {
             var newS = successor(_parent.state, actionsList[i]);
             var newN = new searchNode(actionsList[i], newS, _parent);
-            console.log("CURRENT PATH: ", newN.path());
+            //console.log("CURRENT PATH: ", newN.path());
 
             // If the goal is found,
             // returns the path to the goal.
@@ -309,6 +309,7 @@ function breadthFirstSearch(initialState, goalTest, actions, successor) {
                             console.log("Pushing to fringe: " + newS);
                             newChildStates.push(newS);
                             fringe.push(newN);
+                            console.log("Path: ", newN.path());
                             console.log("Current fringe: " + fringe.map(function (city) {
                                 return city.state;
                             }));
