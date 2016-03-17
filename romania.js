@@ -407,5 +407,11 @@ function successor(state, action) {
     return action.name;
 }
 
-let BFS = breadthFirstSearch("Arad", goalTest, actions, successor);
-console.log(BFS);
+
+// Arad -> Bucharest
+let BFS1 = breadthFirstSearch("Arad", goalTest, actions, successor);
+console.log(BFS1);
+
+// Bucharest -> Bucharest
+let BFS2 = breadthFirstSearch("Bucharest", goalTest, actions, successor);
+console.log(BFS2);

@@ -332,7 +332,12 @@ function successor(state, action) {
     return action.name;
 }
 
-var BFS = breadthFirstSearch("Arad", goalTest, actions, successor);
-console.log(BFS);
+// Arad -> Bucharest
+var BFS1 = breadthFirstSearch("Arad", goalTest, actions, successor);
+console.log(BFS1);
+
+// Bucharest -> Bucharest
+var BFS2 = breadthFirstSearch("Bucharest", goalTest, actions, successor);
+console.log(BFS2);
 
 //# sourceMappingURL=romania-compiled.js.map
