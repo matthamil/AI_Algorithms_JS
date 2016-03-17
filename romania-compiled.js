@@ -272,7 +272,6 @@ function breadthFirstSearch(initialState, goalTest, actions, successor) {
         console.log("\n");
 
         // Create successors of each node and push them onto the fringe.
-        //actionsList.forEach(function(action) {
         for (var i = 0; i < actionsList.length; i++) {
             var newS = successor(_parent.state, actionsList[i]);
             var newN = new searchNode(actionsList[i], newS, _parent);
