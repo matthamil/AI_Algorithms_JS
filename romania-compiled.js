@@ -400,6 +400,9 @@ function depthFirstSearch(initialState, goalTest, actions, successor) {
     }
 }
 
+// TODO
+// Implement a priority queue for Uniform Cost Search
+
 function uniformCostSearch(initialState, goalTest, actions, successor) {
     // The fringe is a Stack
     // Actions other than unshift() and shift() are prohibited.
@@ -478,6 +481,7 @@ function uniformCostSearch(initialState, goalTest, actions, successor) {
 }
 
 var goalCity = null;
+var startCity = null;
 
 function goalTest(state) {
     return state === goalCity;
@@ -493,30 +497,40 @@ function successor(state, action) {
     return action.name;
 }
 
-function bfs() {
+function setSearchInput() {
     var start = document.getElementById("start");
-    start = start.value;
+    startCity = start.value;
     var goal = document.getElementById("goal");
     goal = goal.value;
     goalCity = goal;
+}
+
+function bfs() {
+    setSearchInput();
     if (start.length <= 0 || goal.length <= 0) {
         document.getElementById("search-result").textContent = "Error: Please enter a valid city.";
     } else {
-        document.getElementById("search-result").textContent = breadthFirstSearch(start, goalTest, actions, successor);
+        document.getElementById("search-result").textContent = breadthFirstSearch(startCity, goalTest, actions, successor);
     }
 }
 
 function dfs() {
-    var start = document.getElementById("start");
-    start = start.value;
-    var goal = document.getElementById("goal");
-    goal = goal.value;
-    goalCity = goal;
+    setSearchInput();
     if (start.length <= 0 || goal.length <= 0) {
         document.getElementById("search-result").textContent = "Error: Please enter a valid city.";
     } else {
-        document.getElementById("search-result").textContent = depthFirstSearch(start, goalTest, actions, successor);
+        document.getElementById("search-result").textContent = depthFirstSearch(startCity, goalTest, actions, successor);
     }
+}
+
+function ucs() {
+    setSearchInput();
+    document.getElementById("search-result").textContent = "Error: Uniform Cost Search not implemented yet.";
+}
+
+function astar() {
+    setSearchInput();
+    document.getElementById("search-result").textContent = "Error: A* Search not implemented yet.";
 }
 
 //# sourceMappingURL=romania-compiled.js.map

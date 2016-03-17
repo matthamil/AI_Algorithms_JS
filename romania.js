@@ -5,268 +5,268 @@
 
 let cities = [
     { name: "Oradea",
-      nearby: [
-          {
-              name: "Zerind",
-              cost: 71
-          },
-          {
-              name: "Sibiu",
-              cost: 151
-          }
-      ]
+        nearby: [
+            {
+                name: "Zerind",
+                cost: 71
+            },
+            {
+                name: "Sibiu",
+                cost: 151
+            }
+        ]
     },
     { name: "Zerind",
-      nearby: [
-          {
-              name: "Oradea",
-              cost: 71
-          },
-          {
-              name: "Arad",
-              cost: 75
-          }
-      ]
+        nearby: [
+            {
+                name: "Oradea",
+                cost: 71
+            },
+            {
+                name: "Arad",
+                cost: 75
+            }
+        ]
     },
     { name: "Arad",
-      nearby: [
-          {
-              name: "Zerind",
-              cost: 75
-          },
-          {
-              name: "Sibiu",
-              cost: 140
-          },
-          {
-              name: "Timisoara",
-              cost: 118
-          }
-      ]
+        nearby: [
+            {
+                name: "Zerind",
+                cost: 75
+            },
+            {
+                name: "Sibiu",
+                cost: 140
+            },
+            {
+                name: "Timisoara",
+                cost: 118
+            }
+        ]
     },
     { name: "Timisoara",
-      nearby: [
-          {
-              name: "Arad",
-              cost: 118
-          },
-          {
-              name: "Lugoj",
-              cost: 111
-          }
-      ]
+        nearby: [
+            {
+                name: "Arad",
+                cost: 118
+            },
+            {
+                name: "Lugoj",
+                cost: 111
+            }
+        ]
     },
     { name: "Lugoj",
-      nearby: [
-          {
-              name: "Timisoara",
-              cost: 111
-          },
-          {
-              name: "Mehadia",
-              cost: 70
-          }
-      ]
+        nearby: [
+            {
+                name: "Timisoara",
+                cost: 111
+            },
+            {
+                name: "Mehadia",
+                cost: 70
+            }
+        ]
     },
     { name: "Mehadia",
-      nearby: [
-          {
-              name: "Lugoj",
-              cost: 70
-          },
-          {
-              name: "Drobeta",
-              cost: 75
-          }
-      ]
+        nearby: [
+            {
+                name: "Lugoj",
+                cost: 70
+            },
+            {
+                name: "Drobeta",
+                cost: 75
+            }
+        ]
     },
     { name: "Drobeta",
-      nearby: [
-          {
-              name: "Mehadia",
-              cost: 75
-          },
-          {
-              name: "Craiova",
-              cost: 120
-          }
-      ]
+        nearby: [
+            {
+                name: "Mehadia",
+                cost: 75
+            },
+            {
+                name: "Craiova",
+                cost: 120
+            }
+        ]
     },
     { name: "Craiova",
-      nearby: [
-          {
-              name: "Drobeta",
-              cost: 120
-          },
-          {
-              name: "Pitesti",
-              cost: 138
-          },
-          {
-              name: "Rimnicu Vilcea",
-              cost: 146
-          }
-      ]
+        nearby: [
+            {
+                name: "Drobeta",
+                cost: 120
+            },
+            {
+                name: "Pitesti",
+                cost: 138
+            },
+            {
+                name: "Rimnicu Vilcea",
+                cost: 146
+            }
+        ]
     },
     { name: "Rimnicu Vilcea",
-      nearby: [
-          {
-              name: "Craiova",
-              cost: 146
-          },
-          {
-              name: "Pitesti",
-              cost: 97
-          },
-          {
-              name: "Sibiu",
-              cost: 80
-          }
-      ]
+        nearby: [
+            {
+                name: "Craiova",
+                cost: 146
+            },
+            {
+                name: "Pitesti",
+                cost: 97
+            },
+            {
+                name: "Sibiu",
+                cost: 80
+            }
+        ]
     },
     { name: "Pitesti",
-      nearby: [
-          {
-              name: "Craiova",
-              cost: 138
-          },
-          {
-              name: "Rimnicu Vilcea",
-              cost: 97
-          },
-          {
-              name: "Bucharest",
-              cost: 101
-          }
-      ]
+        nearby: [
+            {
+                name: "Craiova",
+                cost: 138
+            },
+            {
+                name: "Rimnicu Vilcea",
+                cost: 97
+            },
+            {
+                name: "Bucharest",
+                cost: 101
+            }
+        ]
     },
     { name: "Sibiu",
-      nearby: [
-          {
-              name: "Oradea",
-              cost: 151
-          },
-          {
-              name: "Arad",
-              cost: 140
-          },
-          {
-              name: "Fagaras",
-              cost: 99
-          },
-          {
-              name: "Rimnicu Vilcea",
-              cost: 80
-          }
-      ]
+        nearby: [
+            {
+                name: "Oradea",
+                cost: 151
+            },
+            {
+                name: "Arad",
+                cost: 140
+            },
+            {
+                name: "Fagaras",
+                cost: 99
+            },
+            {
+                name: "Rimnicu Vilcea",
+                cost: 80
+            }
+        ]
     },
     { name: "Fagaras",
-      nearby: [
-          {
-              name: "Sibiu",
-              cost: 99
-          },
-          {
-              name: "Bucharest",
-              cost: 211
-          }
-      ]
+        nearby: [
+            {
+                name: "Sibiu",
+                cost: 99
+            },
+            {
+                name: "Bucharest",
+                cost: 211
+            }
+        ]
     },
     { name: "Bucharest",
-      nearby: [
-          {
-              name: "Pitesti",
-              cost: 101
-          },
-          {
-              name: "Giurgiu",
-              cost: 90
-          },
-          {
-              name: "Urziceni",
-              cost: 85
-          },
-          {
-              name: "Fagaras",
-              cost: 211
-          }
-      ]
+        nearby: [
+            {
+                name: "Pitesti",
+                cost: 101
+            },
+            {
+                name: "Giurgiu",
+                cost: 90
+            },
+            {
+                name: "Urziceni",
+                cost: 85
+            },
+            {
+                name: "Fagaras",
+                cost: 211
+            }
+        ]
     },
     { name: "Giurgiu",
-      nearby: [
-          {
-              name: "Bucharest",
-              cost: 90
-          }
-      ]
+        nearby: [
+            {
+                name: "Bucharest",
+                cost: 90
+            }
+        ]
     },
     { name: "Urziceni",
-      nearby: [
-          {
-              name: "Bucharest",
-              cost: 85
-          },
-          {
-              name: "Hirsova",
-              cost: 98
-          },
-          {
-              name: "Vaslui",
-              cost: 142
-          }
-      ]
+        nearby: [
+            {
+                name: "Bucharest",
+                cost: 85
+            },
+            {
+                name: "Hirsova",
+                cost: 98
+            },
+            {
+                name: "Vaslui",
+                cost: 142
+            }
+        ]
     },
     { name: "Eforie",
-      nearby: [
-          {
-              name: "Hirsova",
-              cost: 86
-          }
-      ]
+        nearby: [
+            {
+                name: "Hirsova",
+                cost: 86
+            }
+        ]
     },
     { name: "Vaslui",
-      nearby: [
-          {
-              name: "Urziceni",
-              cost: 142
-          },
-          {
-              name: "Iasi",
-              cost: 92
-          }
-      ]
+        nearby: [
+            {
+                name: "Urziceni",
+                cost: 142
+            },
+            {
+                name: "Iasi",
+                cost: 92
+            }
+        ]
     },
     { name: "Hirsova",
-      nearby: [
-          {
-              name: "Urziceni",
-              cost: 98
-          },
-          {
-              name: "Eforie",
-              cost: 86
-          }
-      ]
+        nearby: [
+            {
+                name: "Urziceni",
+                cost: 98
+            },
+            {
+                name: "Eforie",
+                cost: 86
+            }
+        ]
     },
     { name: "Iasi",
-      nearby: [
-          {
-              name: "Vaslui",
-              cost: 92
-          },
-          {
-              name: "Neamt",
-              cost: 87
-          }
-      ]
+        nearby: [
+            {
+                name: "Vaslui",
+                cost: 92
+            },
+            {
+                name: "Neamt",
+                cost: 87
+            }
+        ]
     },
     { name: "Neamt",
-      nearby: [
-          {
-              name: "Iasi",
-              cost: 87
-          }
-      ]
+        nearby: [
+            {
+                name: "Iasi",
+                cost: 87
+            }
+        ]
     }
 ];
 
@@ -475,6 +475,9 @@ function depthFirstSearch(initialState, goalTest, actions, successor) {
     }
 }
 
+// TODO
+// Implement a priority queue for Uniform Cost Search
+
 function uniformCostSearch(initialState, goalTest, actions, successor) {
     // The fringe is a Stack
     // Actions other than unshift() and shift() are prohibited.
@@ -553,6 +556,7 @@ function uniformCostSearch(initialState, goalTest, actions, successor) {
 }
 
 let goalCity = null;
+let startCity = null;
 
 function goalTest(state) {
     return state === goalCity;
@@ -568,28 +572,38 @@ function successor(state, action) {
     return action.name;
 }
 
-function bfs() {
+function setSearchInput() {
     let start = document.getElementById("start");
-    start = start.value;
+    startCity = start.value;
     let goal = document.getElementById("goal");
     goal = goal.value;
     goalCity = goal;
+}
+
+function bfs() {
+    setSearchInput();
     if (start.length <= 0 || goal.length <= 0) {
         document.getElementById("search-result").textContent = "Error: Please enter a valid city.";
     } else {
-        document.getElementById("search-result").textContent = breadthFirstSearch(start, goalTest, actions, successor);
+        document.getElementById("search-result").textContent = breadthFirstSearch(startCity, goalTest, actions, successor);
     }
 }
 
 function dfs() {
-    let start = document.getElementById("start");
-    start = start.value;
-    let goal = document.getElementById("goal");
-    goal = goal.value;
-    goalCity = goal;
+    setSearchInput();
     if (start.length <= 0 || goal.length <= 0) {
         document.getElementById("search-result").textContent = "Error: Please enter a valid city.";
     } else {
-        document.getElementById("search-result").textContent = depthFirstSearch(start, goalTest, actions, successor);
+        document.getElementById("search-result").textContent = depthFirstSearch(startCity, goalTest, actions, successor);
     }
+}
+
+function ucs() {
+    setSearchInput();
+    document.getElementById("search-result").textContent = "Error: Uniform Cost Search not implemented yet.";
+}
+
+function astar() {
+    setSearchInput();
+    document.getElementById("search-result").textContent = "Error: A* Search not implemented yet.";
 }
