@@ -216,7 +216,7 @@ var searchNode = (function () {
             if (this.parent === null) {
                 return [this.state, this.action];
             } else {
-                return this.parent.path() + [this.state, this.action.cost];
+                return this.parent.path() + " -> " + [this.state, this.action.cost];
             }
         }
 
