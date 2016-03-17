@@ -413,6 +413,10 @@ function successor(state, action) {
 let BFS1 = breadthFirstSearch("Arad", goalTest, actions, successor);
 console.log(BFS1);
 
+function writeToDiv() {
+    document.getElementById("breadth-first-search").textContent = BFS1;
+}
+
 // Bucharest -> Bucharest
 let BFS2 = breadthFirstSearch("Bucharest", goalTest, actions, successor);
 console.log(BFS2);
