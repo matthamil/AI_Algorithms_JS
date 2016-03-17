@@ -74,10 +74,10 @@ var cities = [{ name: "Oradea",
         name: "Pitesti",
         cost: 138
     }, {
-        name: "Rimnieu Vilcea",
+        name: "Rimnicu Vilcea",
         cost: 146
     }]
-}, { name: "Rimnieu Vilcea",
+}, { name: "Rimnicu Vilcea",
     nearby: [{
         name: "Craiova",
         cost: 146
@@ -93,7 +93,7 @@ var cities = [{ name: "Oradea",
         name: "Craiova",
         cost: 138
     }, {
-        name: "Rimnieu Vilcea",
+        name: "Rimnicu Vilcea",
         cost: 97
     }, {
         name: "Bucharest",
@@ -110,7 +110,7 @@ var cities = [{ name: "Oradea",
         name: "Fagaras",
         cost: 99
     }, {
-        name: "Rimnieu Vilcea",
+        name: "Rimnicu Vilcea",
         cost: 80
     }]
 }, { name: "Fagaras",

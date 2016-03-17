@@ -103,12 +103,12 @@ let cities = [
               cost: 138
           },
           {
-              name: "Rimnieu Vilcea",
+              name: "Rimnicu Vilcea",
               cost: 146
           }
       ]
     },
-    { name: "Rimnieu Vilcea",
+    { name: "Rimnicu Vilcea",
       nearby: [
           {
               name: "Craiova",
@@ -131,7 +131,7 @@ let cities = [
               cost: 138
           },
           {
-              name: "Rimnieu Vilcea",
+              name: "Rimnicu Vilcea",
               cost: 97
           },
           {
@@ -155,7 +155,7 @@ let cities = [
               cost: 99
           },
           {
-              name: "Rimnieu Vilcea",
+              name: "Rimnicu Vilcea",
               cost: 80
           }
       ]
