@@ -1,5 +1,8 @@
 "use strict";
 
+// Map URL:
+// https://i.imgur.com/rAe8QIy.jpg
+
 let cities = [
     { name: "Oradea",
       nearby: [
