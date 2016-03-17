@@ -250,32 +250,32 @@ function breadthFirstSearch(initialState, goalTest, actions, successor) {
     // Add the initialState to the fringe.
     fringe.push(new searchNode(null, initialState, null));
     var expanded = [];
-
-    var _loop = function () {
+    while (fringe.length !== 0) {
         console.log("Fringe: " + fringe.map(function (city) {
             return city.state;
         }));
 
         // Pop an element out of the queue to expand.
-        var parent = fringe.shift();
-        console.log("Popped: ", parent.state);
+        var _parent = fringe.shift();
+        console.log("Popped: ", _parent.state);
         var newChildStates = [];
 
         // Child states of the current node
-        var actionsList = actions(parent.state);
-        console.log("Found " + actionsList.length + " successors of " + parent.state + " : " + actionsList.map(function (item) {
+        var actionsList = actions(_parent.state);
+        console.log("Found " + actionsList.length + " successors of " + _parent.state + " : " + actionsList.map(function (item) {
             return item.name;
         }));
 
         // Add the node to the expanded list to prevent re-expansion.
-        expanded.push(parent.state);
+        expanded.push(_parent.state);
         console.log("Expanded list: ", expanded);
         console.log("\n");
 
         // Create successors of each node and push them onto the fringe.
-        actionsList.forEach(function (action) {
-            var newS = successor(parent.state, action);
-            var newN = new searchNode(action, newS, parent);
+        //actionsList.forEach(function(action) {
+        for (var i = 0; i < actionsList.length; i++) {
+            var newS = successor(_parent.state, actionsList[i]);
+            var newN = new searchNode(actionsList[i], newS, _parent);
             console.log("CURRENT PATH: ", newN.path());
 
             // If the goal is found,
@@ -288,7 +288,7 @@ function breadthFirstSearch(initialState, goalTest, actions, successor) {
             // If the successor is already expanded,
             // don't add it to the fringe.
             else if (expanded.indexOf(newS) !== -1) {
-                    console.log("Successor " + newS + " of " + parent.state + " already expanded.");
+                    console.log("Successor " + newS + " of " + _parent.state + " already expanded.");
                     console.log("Not adding " + newS + " to the fringe.");
                     console.log("\n");
                 }
@@ -303,7 +303,7 @@ function breadthFirstSearch(initialState, goalTest, actions, successor) {
 
                     // Push new successors to the fringe.
                     else {
-                            console.log("Discovered " + newN.state + " with step cost " + action.cost + " from " + parent.state);
+                            console.log("Discovered " + newN.state + " with step cost " + actionsList[i].cost + " from " + _parent.state);
                             console.log("Pushing to fringe: " + newS);
                             newChildStates.push(newS);
                             fringe.push(newN);
@@ -312,11 +312,7 @@ function breadthFirstSearch(initialState, goalTest, actions, successor) {
                             }));
                             console.log("\n");
                         }
-        });
-    };
-
-    while (fringe.length !== 0) {
-        _loop();
+        }
     }
 }
 
@@ -335,5 +331,6 @@ function successor(state, action) {
 }
 
 var BFSarray = breadthFirstSearch("Arad", goalTest, actions, successor);
+console.log(BFSarray);
 
 //# sourceMappingURL=romania-compiled.js.map

@@ -348,9 +348,10 @@ function breadthFirstSearch(initialState, goalTest, actions, successor) {
         console.log("\n");
 
         // Create successors of each node and push them onto the fringe.
-        actionsList.forEach(function(action) {
-            let newS = successor(parent.state, action);
-            let newN = new searchNode(action, newS, parent);
+        //actionsList.forEach(function(action) {
+        for (let i = 0; i < actionsList.length; i++) {
+            let newS = successor(parent.state, actionsList[i]);
+            let newN = new searchNode(actionsList[i], newS, parent);
             console.log("CURRENT PATH: ", newN.path());
 
             // If the goal is found,
@@ -377,7 +378,7 @@ function breadthFirstSearch(initialState, goalTest, actions, successor) {
             // Push new successors to the fringe.
             else {
                 console.log("Discovered " + newN.state + " with step cost "
-                    + action.cost + " from " + parent.state);
+                    + actionsList[i].cost + " from " + parent.state);
                 console.log("Pushing to fringe: " + newS);
                 newChildStates.push(newS);
                 fringe.push(newN);
@@ -386,7 +387,7 @@ function breadthFirstSearch(initialState, goalTest, actions, successor) {
                     }));
                 console.log("\n");
             }
-        });
+        }
     }
 }
 
@@ -405,3 +406,4 @@ function successor(state, action) {
 }
 
 let BFSarray = breadthFirstSearch("Arad", goalTest, actions, successor);
+console.log(BFSarray);
