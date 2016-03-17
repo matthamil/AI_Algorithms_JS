@@ -210,6 +210,11 @@ var searchNode = (function () {
         this.parent = parent;
     }
 
+    // Uninformed Search Algorithms
+    // * Breadth-first Search
+    // * Depth-first Search
+    // * Uniform Cost Search
+
     // Returns a list of pairs corresponding to
     // the path starting at the top (root) of the tree.
 
@@ -243,7 +248,7 @@ var searchNode = (function () {
 
 function breadthFirstSearch(initialState, goalTest, actions, successor) {
     // The fringe is a Queue
-    // Actions other than push(n) and shift() are prohibited.
+    // Actions other than push() and shift() are prohibited.
     var fringe = [];
     if (goalTest(initialState)) {
         console.log("Initial state is the goal state.");
@@ -318,6 +323,160 @@ function breadthFirstSearch(initialState, goalTest, actions, successor) {
     }
 }
 
+function depthFirstSearch(initialState, goalTest, actions, successor) {
+    // The fringe is a Stack
+    // Actions other than unshift() and shift() are prohibited.
+    var fringe = [];
+    if (goalTest(initialState)) {
+        console.log("Initial state is the goal state.");
+        return [initialState];
+    }
+
+    // Add the initialState to the fringe.
+    fringe.push(new searchNode(null, initialState, null));
+    var expanded = [];
+    while (fringe.length !== 0) {
+        console.log("Fringe: " + fringe.map(function (city) {
+            return city.state;
+        }));
+
+        // Pop an element out of the queue to expand.
+        var _parent2 = fringe.shift();
+        console.log("Popped: ", _parent2.state);
+        var newChildStates = [];
+
+        // Child states of the current node
+        var actionsList = actions(_parent2.state);
+        console.log("Found " + actionsList.length + " successors of " + _parent2.state + " : " + actionsList.map(function (item) {
+            return item.name;
+        }));
+
+        // Add the node to the expanded list to prevent re-expansion.
+        expanded.push(_parent2.state);
+        console.log("Expanded list: ", expanded);
+        console.log("\n");
+
+        // Create successors of each node and push them onto the fringe.
+        for (var i = 0; i < actionsList.length; i++) {
+            var newS = successor(_parent2.state, actionsList[i]);
+            var newN = new searchNode(actionsList[i], newS, _parent2);
+
+            // If the goal is found,
+            // returns the path to the goal.
+            if (goalTest(newS)) {
+                console.log("FOUND GOAL!", newS);
+                return newN.path();
+            }
+
+            // If the successor is already expanded,
+            // don't add it to the fringe.
+            else if (expanded.indexOf(newS) !== -1) {
+                    console.log("Successor " + newS + " of " + _parent2.state + " already expanded.");
+                    console.log("Not adding " + newS + " to the fringe.");
+                    console.log("\n");
+                }
+
+                // If the successor is already in the fringe,
+                // don't add it to the fringe again.
+                else if (fringe.map(function (item) {
+                        return item.state;
+                    }).indexOf(newN.state) !== -1) {
+                        console.log(newS + " is already in the fringe.");
+                    }
+
+                    // Push new successors to the fringe.
+                    else {
+                            console.log("Discovered " + newN.state + " with step cost " + actionsList[i].cost + " from " + _parent2.state);
+                            console.log("Pushing to fringe: " + newS);
+                            newChildStates.push(newS);
+                            fringe.unshift(newN);
+                            console.log("Path: ", newN.path());
+                            console.log("Current fringe: " + fringe.map(function (city) {
+                                return city.state;
+                            }));
+                            console.log("\n");
+                        }
+        }
+    }
+}
+
+function uniformCostSearch(initialState, goalTest, actions, successor) {
+    // The fringe is a Stack
+    // Actions other than unshift() and shift() are prohibited.
+    var fringe = [];
+    if (goalTest(initialState)) {
+        console.log("Initial state is the goal state.");
+        return [initialState];
+    }
+
+    // Add the initialState to the fringe.
+    fringe.push(new searchNode(null, initialState, null));
+    var expanded = [];
+    while (fringe.length !== 0) {
+        console.log("Fringe: " + fringe.map(function (city) {
+            return city.state;
+        }));
+
+        // Pop an element out of the queue to expand.
+        var _parent3 = fringe.shift();
+        console.log("Popped: ", _parent3.state);
+        var newChildStates = [];
+
+        // Child states of the current node
+        var actionsList = actions(_parent3.state);
+        console.log("Found " + actionsList.length + " successors of " + _parent3.state + " : " + actionsList.map(function (item) {
+            return item.name;
+        }));
+
+        // Add the node to the expanded list to prevent re-expansion.
+        expanded.push(_parent3.state);
+        console.log("Expanded list: ", expanded);
+        console.log("\n");
+
+        // Create successors of each node and push them onto the fringe.
+        for (var i = 0; i < actionsList.length; i++) {
+            var newS = successor(_parent3.state, actionsList[i]);
+            var newN = new searchNode(actionsList[i], newS, _parent3);
+
+            // If the goal is found,
+            // returns the path to the goal.
+            if (goalTest(newS)) {
+                console.log("FOUND GOAL!", newS);
+                return newN.path();
+            }
+
+            // If the successor is already expanded,
+            // don't add it to the fringe.
+            else if (expanded.indexOf(newS) !== -1) {
+                    console.log("Successor " + newS + " of " + _parent3.state + " already expanded.");
+                    console.log("Not adding " + newS + " to the fringe.");
+                    console.log("\n");
+                }
+
+                // If the successor is already in the fringe,
+                // don't add it to the fringe again.
+                else if (fringe.map(function (item) {
+                        return item.state;
+                    }).indexOf(newN.state) !== -1) {
+                        console.log(newS + " is already in the fringe.");
+                    }
+
+                    // Push new successors to the fringe.
+                    else {
+                            console.log("Discovered " + newN.state + " with step cost " + actionsList[i].cost + " from " + _parent3.state);
+                            console.log("Pushing to fringe: " + newS);
+                            newChildStates.push(newS);
+                            fringe.push(newN);
+                            console.log("Path: ", newN.path());
+                            console.log("Current fringe: " + fringe.map(function (city) {
+                                return city.state;
+                            }));
+                            console.log("\n");
+                        }
+        }
+    }
+}
+
 var goalCity = null;
 
 function goalTest(state) {
@@ -341,9 +500,22 @@ function bfs() {
     goal = goal.value;
     goalCity = goal;
     if (start.length <= 0 || goal.length <= 0) {
-        document.getElementById("breadth-first-search").textContent = "Error: Please enter a valid city.";
+        document.getElementById("search-result").textContent = "Error: Please enter a valid city.";
     } else {
-        document.getElementById("breadth-first-search").textContent = breadthFirstSearch(start, goalTest, actions, successor);
+        document.getElementById("search-result").textContent = breadthFirstSearch(start, goalTest, actions, successor);
+    }
+}
+
+function dfs() {
+    var start = document.getElementById("start");
+    start = start.value;
+    var goal = document.getElementById("goal");
+    goal = goal.value;
+    goalCity = goal;
+    if (start.length <= 0 || goal.length <= 0) {
+        document.getElementById("search-result").textContent = "Error: Please enter a valid city.";
+    } else {
+        document.getElementById("search-result").textContent = depthFirstSearch(start, goalTest, actions, successor);
     }
 }
 
