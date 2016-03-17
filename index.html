@@ -3,11 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>AI Search Algorithms</title>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="theme.css"/>
 </head>
 <body>
-    <img src="https://i.imgur.com/rAe8QIy.jpg" alt="map of Romania"/>
-    <button onclick="writeToDiv()">Breadth-first Search</button>
+    <img src="https://i.imgur.com/AM9hVNw.png" alt="map of Romania"/>
+    <div style="text-align: center;">
+        <input type="text" id="start" placeholder="Start"/>
+        <input type="text" id="goal" placeholder="Goal"/>
+    </div>
+    <button onclick="bfs()">Breadth-first Search</button>
     <div id="breadth-first-search"></div>
     <script src="romania.js"></script>
 </body>

@@ -103,12 +103,12 @@ let cities = [
               cost: 138
           },
           {
-              name: "Rimnieu Vikea",
+              name: "Rimnieu Vilcea",
               cost: 146
           }
       ]
     },
-    { name: "Rimnieu Vikea",
+    { name: "Rimnieu Vilcea",
       nearby: [
           {
               name: "Craiova",
@@ -131,7 +131,7 @@ let cities = [
               cost: 138
           },
           {
-              name: "Rimnieu Vikea",
+              name: "Rimnieu Vilcea",
               cost: 97
           },
           {
@@ -155,7 +155,7 @@ let cities = [
               cost: 99
           },
           {
-              name: "Rimnieu Vikea",
+              name: "Rimnieu Vilcea",
               cost: 80
           }
       ]
@@ -393,8 +393,10 @@ function breadthFirstSearch(initialState, goalTest, actions, successor) {
     }
 }
 
+let goalCity = null;
+
 function goalTest(state) {
-    return state === "Bucharest";
+    return state === goalCity;
 }
 
 function actions(state) {
@@ -407,15 +409,15 @@ function successor(state, action) {
     return action.name;
 }
 
-
-// Arad -> Bucharest
-let BFS1 = breadthFirstSearch("Arad", goalTest, actions, successor);
-console.log(BFS1);
-
-function writeToDiv() {
-    document.getElementById("breadth-first-search").textContent = BFS1;
+function bfs() {
+    let start = document.getElementById("start");
+    start = start.value;
+    let goal = document.getElementById("goal");
+    goal = goal.value;
+    goalCity = goal;
+    if (start.length <= 0 || goal.length <= 0) {
+        document.getElementById("breadth-first-search").textContent = "Error: Please enter a valid city.";
+    } else {
+        document.getElementById("breadth-first-search").textContent = breadthFirstSearch(start, goalTest, actions, successor);
+    }
 }
-
-// Bucharest -> Bucharest
-let BFS2 = breadthFirstSearch("Bucharest", goalTest, actions, successor);
-console.log(BFS2);

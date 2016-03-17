@@ -74,10 +74,10 @@ var cities = [{ name: "Oradea",
         name: "Pitesti",
         cost: 138
     }, {
-        name: "Rimnieu Vikea",
+        name: "Rimnieu Vilcea",
         cost: 146
     }]
-}, { name: "Rimnieu Vikea",
+}, { name: "Rimnieu Vilcea",
     nearby: [{
         name: "Craiova",
         cost: 146
@@ -93,7 +93,7 @@ var cities = [{ name: "Oradea",
         name: "Craiova",
         cost: 138
     }, {
-        name: "Rimnieu Vikea",
+        name: "Rimnieu Vilcea",
         cost: 97
     }, {
         name: "Bucharest",
@@ -110,7 +110,7 @@ var cities = [{ name: "Oradea",
         name: "Fagaras",
         cost: 99
     }, {
-        name: "Rimnieu Vikea",
+        name: "Rimnieu Vilcea",
         cost: 80
     }]
 }, { name: "Fagaras",
@@ -278,7 +278,6 @@ function breadthFirstSearch(initialState, goalTest, actions, successor) {
         for (var i = 0; i < actionsList.length; i++) {
             var newS = successor(_parent.state, actionsList[i]);
             var newN = new searchNode(actionsList[i], newS, _parent);
-            //console.log("CURRENT PATH: ", newN.path());
 
             // If the goal is found,
             // returns the path to the goal.
@@ -319,8 +318,10 @@ function breadthFirstSearch(initialState, goalTest, actions, successor) {
     }
 }
 
+var goalCity = null;
+
 function goalTest(state) {
-    return state === "Bucharest";
+    return state === goalCity;
 }
 
 function actions(state) {
@@ -333,16 +334,17 @@ function successor(state, action) {
     return action.name;
 }
 
-// Arad -> Bucharest
-var BFS1 = breadthFirstSearch("Arad", goalTest, actions, successor);
-console.log(BFS1);
-
-function writeToDiv() {
-    document.getElementById("breadth-first-search").textContent = BFS1;
+function bfs() {
+    var start = document.getElementById("start");
+    start = start.value;
+    var goal = document.getElementById("goal");
+    goal = goal.value;
+    goalCity = goal;
+    if (start.length <= 0 || goal.length <= 0) {
+        document.getElementById("breadth-first-search").textContent = "Error: Please enter a valid city.";
+    } else {
+        document.getElementById("breadth-first-search").textContent = breadthFirstSearch(start, goalTest, actions, successor);
+    }
 }
-
-// Bucharest -> Bucharest
-var BFS2 = breadthFirstSearch("Bucharest", goalTest, actions, successor);
-console.log(BFS2);
 
 //# sourceMappingURL=romania-compiled.js.map
