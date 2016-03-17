@@ -404,5 +404,5 @@ function successor(state, action) {
     return action.name;
 }
 
-let BFSarray = breadthFirstSearch("Arad", goalTest, actions, successor);
-console.log(BFSarray);
+let BFS = breadthFirstSearch("Arad", goalTest, actions, successor);
+console.log(BFS);

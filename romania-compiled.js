@@ -329,7 +329,7 @@ function successor(state, action) {
     return action.name;
 }
 
-var BFSarray = breadthFirstSearch("Arad", goalTest, actions, successor);
-console.log(BFSarray);
+var BFS = breadthFirstSearch("Arad", goalTest, actions, successor);
+console.log(BFS);
 
 //# sourceMappingURL=romania-compiled.js.map
