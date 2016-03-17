@@ -354,7 +354,6 @@ function breadthFirstSearch(initialState, goalTest, actions, successor) {
         for (let i = 0; i < actionsList.length; i++) {
             let newS = successor(parent.state, actionsList[i]);
             let newN = new searchNode(actionsList[i], newS, parent);
-            //console.log("CURRENT PATH: ", newN.path());
 
             // If the goal is found,
             // returns the path to the goal.
