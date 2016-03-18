@@ -575,26 +575,18 @@ function uniformCostSearch(initialState, goalTest, actions, successor) {
                     console.log("\n");
                 }
 
-                // If the successor is already in the fringe,
-                // don't add it to the fringe again.
-                else if (fringe.map(function (item) {
-                        return item.state;
-                    }).indexOf(newN.state) !== -1) {
-                        console.log(newS + " is already in the fringe.");
+                // Push new successors to the fringe.
+                else {
+                        console.log("Discovered " + newN.state + " with step cost " + actionsList[i].cost + " from " + _parent3.state);
+                        console.log("Pushing to fringe: " + newS);
+                        newChildStates.push(newS);
+                        fringe.enqueue(newN);
+                        console.log("Path: ", newN.path());
+                        console.log("Current fringe: " + fringe.map(function (city) {
+                            return city.state;
+                        }));
+                        console.log("\n");
                     }
-
-                    // Push new successors to the fringe.
-                    else {
-                            console.log("Discovered " + newN.state + " with step cost " + actionsList[i].cost + " from " + _parent3.state);
-                            console.log("Pushing to fringe: " + newS);
-                            newChildStates.push(newS);
-                            fringe.enqueue(newN);
-                            console.log("Path: ", newN.path());
-                            console.log("Current fringe: " + fringe.map(function (city) {
-                                return city.state;
-                            }));
-                            console.log("\n");
-                        }
         }
     }
 
@@ -699,26 +691,18 @@ function aStarSearch(initialState, goalTest, actions, successor) {
                     console.log("\n");
                 }
 
-                // If the successor is already in the fringe,
-                // don't add it to the fringe again.
-                else if (fringe.map(function (item) {
-                        return item.state;
-                    }).indexOf(newN.state) !== -1) {
-                        console.log(newS + " is already in the fringe.");
+                // Push new successors to the fringe.
+                else {
+                        console.log("Discovered " + newN.state + " with step cost " + actionsList[i].cost + " from " + _parent4.state);
+                        console.log("Pushing to fringe: " + newS);
+                        newChildStates.push(newS);
+                        fringe.enqueue(newN);
+                        console.log("Path: ", newN.path());
+                        console.log("Current fringe: " + fringe.map(function (city) {
+                            return city.state;
+                        }));
+                        console.log("\n");
                     }
-
-                    // Push new successors to the fringe.
-                    else {
-                            console.log("Discovered " + newN.state + " with step cost " + actionsList[i].cost + " from " + _parent4.state);
-                            console.log("Pushing to fringe: " + newS);
-                            newChildStates.push(newS);
-                            fringe.enqueue(newN);
-                            console.log("Path: ", newN.path());
-                            console.log("Current fringe: " + fringe.map(function (city) {
-                                return city.state;
-                            }));
-                            console.log("\n");
-                        }
         }
     }
 

@@ -650,12 +650,6 @@ function uniformCostSearch(initialState, goalTest, actions, successor) {
                 console.log("\n");
             }
 
-            // If the successor is already in the fringe,
-            // don't add it to the fringe again.
-            else if (fringe.map(function(item){return item.state}).indexOf(newN.state) !== -1) {
-                console.log(newS + " is already in the fringe.");
-            }
-
             // Push new successors to the fringe.
             else {
                 console.log("Discovered " + newN.state + " with step cost "
@@ -772,12 +766,6 @@ function aStarSearch(initialState, goalTest, actions, successor) {
                 console.log("Successor " + newS + " of " + parent.state + " already expanded.");
                 console.log("Not adding " + newS + " to the fringe.");
                 console.log("\n");
-            }
-
-            // If the successor is already in the fringe,
-            // don't add it to the fringe again.
-            else if (fringe.map(function(item){return item.state}).indexOf(newN.state) !== -1) {
-                console.log(newS + " is already in the fringe.");
             }
 
             // Push new successors to the fringe.
