@@ -625,10 +625,18 @@ function aStarSearch(initialState, goalTest, actions, successor) {
             }
         }
 
+        function findHeuristic(item) {
+            for (var i = 0; i < cities.length; i++) {
+                if (cities[i].name === item.state) {
+                    return cities[i].h;
+                }
+            }
+        }
+
         for (var i = 0; i < fringe.length; i++) {
-            console.log("ITEM: ", fringe[i].state);
-            console.log("COST: ", fringe[i].pathCost(), "HEURISTIC COST: ", heuristic, "TOTAL COST: ", fringe[i].pathCost() + heuristic);
-            if (item.pathCost() + heuristic < fringe[i].pathCost()) {
+            console.log("Iteration in fringe: ", fringe[i].state);
+            console.log("COST: ", fringe[i].pathCost(), "HEURISTIC COST: ", findHeuristic(fringe[i]), "TOTAL COST: ", fringe[i].pathCost() + findHeuristic(fringe[i]));
+            if (item.pathCost() + heuristic < fringe[i].pathCost() + findHeuristic(fringe[i])) {
                 fringe.splice(i, 0, item);
                 added = true;
                 return;
