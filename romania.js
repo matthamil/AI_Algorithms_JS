@@ -635,7 +635,7 @@ function uniformCostSearch(initialState, goalTest, actions, successor) {
     if (shortestPath.pathCost === null) {
         return "Couldn't find path."
     } else {
-        return "Optimal path: " + shortestPath.path + " with path cost " + shortestPath.pathCost;
+        return shortestPath.path + " with path cost " + shortestPath.pathCost;
     }
 }
 
@@ -742,7 +742,7 @@ function aStarSearch(initialState, goalTest, actions, successor) {
     if (shortestPath.pathCost === null) {
         return "Couldn't find path."
     } else {
-        return "Optimal path: " + shortestPath.path + " with path cost " + shortestPath.pathCost;
+        return shortestPath.path + " with path cost " + shortestPath.pathCost;
     }
 }
 
@@ -780,21 +780,25 @@ function setSearchInput() {
 
 function bfs() {
     setSearchInput();
+    document.getElementById("path").textContent = "Path:";
     setResult(breadthFirstSearch(startCity, goalTest, actions, successor));
 }
 
 function dfs() {
     setSearchInput();
+    document.getElementById("path").textContent = "Path:";
     setResult(depthFirstSearch(startCity, goalTest, actions, successor));
 }
 
 function ucs() {
     setSearchInput();
+    document.getElementById("path").textContent = "Optimal path:";
     setResult(uniformCostSearch(startCity, goalTest, actions, successor));
 }
 
 function astar() {
     setSearchInput();
+    document.getElementById("path").textContent = "Optimal path with straight-line distance heuristic:";
     if (goalCity !== "Bucharest") {
         setResult("Error: Heuristic values are only calculated for any start city to Bucharest. Please change the goal city to Bucharest and try again.");
     } else {
