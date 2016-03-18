@@ -554,7 +554,6 @@ function uniformCostSearch(initialState, goalTest, actions, successor) {
                     shortestPath.path = newN.path();
                     shortestPath.state = newS;
                 }
-                //return newN.path();
             }
 
             // If the successor is already expanded,
