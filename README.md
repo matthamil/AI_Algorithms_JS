@@ -12,6 +12,8 @@ Algorithms implemented:
 
 The search algorithms find paths from a start city to a goal city in a map of Romania taken from [Artificial Intelligence: A Modern Approach (3rd Edition)](http://aima.cs.berkeley.edu/).
 
+Open your browser's Developer Tools to see the algorithms in action in the console.
+
 ### Version
 1.0.0
 
