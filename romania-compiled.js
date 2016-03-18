@@ -689,45 +689,58 @@ function successor(state, action) {
 var goalCity = null;
 var startCity = null;
 var setResult = function setResult(result) {
-    document.getElementById("search-result").textContent = result;
+    var element = document.getElementById("search-result");
+    while (element.firstChild !== null) {
+        // remove all existing content
+        element.removeChild(element.firstChild);
+    }
+    element.appendChild(document.createTextNode(result));
 };
 
 function setSearchInput() {
+    startCity = null;
+    goalCity = null;
     var start = document.getElementById("start");
     var goal = document.getElementById("goal");
     if (start.value.length > 0 && goal.value.length > 0) {
         startCity = start.value;
         goalCity = goal.value;
+        return true;
     } else {
-        setResult("Error: Please enter a city.");
+        setResult("Error: Please enter a valid city.");
+        return false;
     }
 }
 
 function bfs() {
-    setSearchInput();
-    document.getElementById("path").textContent = "Path:";
-    setResult(breadthFirstSearch(startCity, goalTest, actions, successor));
+    document.getElementById("path").innerHTML = "Path:";
+    if (setSearchInput()) {
+        setResult(breadthFirstSearch(startCity, goalTest, actions, successor));
+    }
 }
 
 function dfs() {
-    setSearchInput();
-    document.getElementById("path").textContent = "Path:";
-    setResult(depthFirstSearch(startCity, goalTest, actions, successor));
+    document.getElementById("path").innerHTML = "Path:";
+    if (setSearchInput()) {
+        setResult(depthFirstSearch(startCity, goalTest, actions, successor));
+    }
 }
 
 function ucs() {
-    setSearchInput();
-    document.getElementById("path").textContent = "Optimal path:";
-    setResult(uniformCostSearch(startCity, goalTest, actions, successor));
+    document.getElementById("path").innerHTML = "Optimal path:";
+    if (setSearchInput()) {
+        setResult(uniformCostSearch(startCity, goalTest, actions, successor));
+    }
 }
 
 function astar() {
-    setSearchInput();
-    document.getElementById("path").textContent = "Optimal path with straight-line distance heuristic:";
-    if (goalCity !== "Bucharest") {
-        setResult("Error: Heuristic values are only calculated for any start city to Bucharest. Please change the goal city to Bucharest and try again.");
-    } else {
-        setResult(aStarSearch(startCity, goalTest, actions, successor));
+    document.getElementById("path").innerHTML = "Optimal path with straight-line distance heuristic:";
+    if (setSearchInput()) {
+        if (goalCity !== "Bucharest") {
+            setResult("Error: Heuristic values are only calculated for any start city to Bucharest. Please change the goal city to Bucharest and try again.");
+        } else {
+            setResult(aStarSearch(startCity, goalTest, actions, successor));
+        }
     }
 }
 
