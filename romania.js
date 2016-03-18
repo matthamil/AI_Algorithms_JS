@@ -301,11 +301,19 @@ class searchNode {
         }
     }
 
+    pathCost() {
+        if (this.parent === null) {
+            return 0;
+        } else {
+            return this.parent.pathCost() + this.action.cost;
+        }
+    }
+
     // Returns true if the state occurs anywhere in the path
     // from the root to the node.
     inPath(findState) {
         if (findState == this.state) {
-            return true
+            return true;
         }
         else if (this.parent == null) {
             return false;
@@ -364,7 +372,7 @@ function breadthFirstSearch(initialState, goalTest, actions, successor) {
             // returns the path to the goal.
             if (goalTest(newS)) {
                 console.log("FOUND GOAL!", newS);
-                return newN.path();
+                return newN.path() + " with path cost " + newN.pathCost();
             }
 
             // If the successor is already expanded,
@@ -441,7 +449,7 @@ function depthFirstSearch(initialState, goalTest, actions, successor) {
             // returns the path to the goal.
             if (goalTest(newS)) {
                 console.log("FOUND GOAL!", newS);
-                return newN.path();
+                return newN.path() + " with path cost " + newN.pathCost();
             }
 
             // If the successor is already expanded,
@@ -479,17 +487,36 @@ function depthFirstSearch(initialState, goalTest, actions, successor) {
 // Implement a priority queue for Uniform Cost Search
 
 function uniformCostSearch(initialState, goalTest, actions, successor) {
-    // The fringe is a Stack
-    // Actions other than unshift() and shift() are prohibited.
+    // The fringe is a Priority Queue
+    // Actions other than shift() and enqueue() are prohibited.
     let fringe = [];
     if (goalTest(initialState)) {
         console.log("Initial state is the goal state.");
         return [initialState];
     }
 
+    fringe.enqueue = function(item) {
+        let added = false;
+        for (let i = 0; i < fringe.length; i++) {
+            console.log("ITEM: ", fringe[i].state);
+            console.log("COST: ", fringe[i].pathCost());
+            if (item.pathCost() < fringe[i].pathCost()) {
+                fringe.splice(i, 0, item);
+                added = true;
+                return;
+            }
+        }
+
+        if (!added) {
+            fringe.push(item);
+        }
+    };
+
     // Add the initialState to the fringe.
-    fringe.push(new searchNode(null, initialState, null));
+    fringe.enqueue(new searchNode(null, initialState, null));
     let expanded = [];
+    let shortestPath = {state: null, pathCost: null, path: null};
+
     while (fringe.length !== 0) {
         console.log("Fringe: " + fringe.map(function(city){
                 return city.state;
@@ -520,8 +547,14 @@ function uniformCostSearch(initialState, goalTest, actions, successor) {
             // If the goal is found,
             // returns the path to the goal.
             if (goalTest(newS)) {
-                console.log("FOUND GOAL!", newS);
-                return newN.path();
+                console.log("FOUND GOAL!", newS, " with path cost ", newN.pathCost());
+                console.log("Continuing search to find optimal path.");
+                if (newN.pathCost() < shortestPath.pathCost || shortestPath.pathCost === null) {
+                    shortestPath.pathCost = newN.pathCost();
+                    shortestPath.path = newN.path();
+                    shortestPath.state = newS;
+                }
+                //return newN.path();
             }
 
             // If the successor is already expanded,
@@ -544,7 +577,7 @@ function uniformCostSearch(initialState, goalTest, actions, successor) {
                     + actionsList[i].cost + " from " + parent.state);
                 console.log("Pushing to fringe: " + newS);
                 newChildStates.push(newS);
-                fringe.push(newN);
+                fringe.enqueue(newN);
                 console.log("Path: ", newN.path());
                 console.log("Current fringe: " + fringe.map(function(city){
                         return city.state;
@@ -552,6 +585,12 @@ function uniformCostSearch(initialState, goalTest, actions, successor) {
                 console.log("\n");
             }
         }
+    }
+
+    if (shortestPath.pathCost === null) {
+        return "Couldn't find path."
+    } else {
+        return "Optimal path: " + shortestPath.path + " with path cost " + shortestPath.pathCost;
     }
 }
 
@@ -600,7 +639,11 @@ function dfs() {
 
 function ucs() {
     setSearchInput();
-    document.getElementById("search-result").textContent = "Error: Uniform Cost Search not implemented yet.";
+    if (startCity.length <= 0 || goalCity.length <= 0) {
+        document.getElementById("search-result").textContent = "Error: Please enter a valid city.";
+    } else {
+        document.getElementById("search-result").textContent = uniformCostSearch(startCity, goalTest, actions, successor);
+    }
 }
 
 function astar() {
