@@ -4,7 +4,9 @@
 // https://i.imgur.com/rAe8QIy.jpg
 
 let cities = [
-    { name: "Oradea",
+    {
+        name: "Oradea",
+        h: 380,
         nearby: [
             {
                 name: "Zerind",
@@ -18,7 +20,9 @@ let cities = [
             }
         ]
     },
-    { name: "Zerind",
+    {
+        name: "Zerind",
+        h: 374,
         nearby: [
             {
                 name: "Oradea",
@@ -32,7 +36,9 @@ let cities = [
             }
         ]
     },
-    { name: "Arad",
+    {
+        name: "Arad",
+        h: 366,
         nearby: [
             {
                 name: "Zerind",
@@ -51,7 +57,9 @@ let cities = [
             }
         ]
     },
-    { name: "Timisoara",
+    {
+        name: "Timisoara",
+        h: 329,
         nearby: [
             {
                 name: "Arad",
@@ -65,7 +73,9 @@ let cities = [
             }
         ]
     },
-    { name: "Lugoj",
+    {
+        name: "Lugoj",
+        h: 244,
         nearby: [
             {
                 name: "Timisoara",
@@ -79,7 +89,9 @@ let cities = [
             }
         ]
     },
-    { name: "Mehadia",
+    {
+        name: "Mehadia",
+        h: 241,
         nearby: [
             {
                 name: "Lugoj",
@@ -93,7 +105,9 @@ let cities = [
             }
         ]
     },
-    { name: "Drobeta",
+    {
+        name: "Drobeta",
+        h: 242,
         nearby: [
             {
                 name: "Mehadia",
@@ -107,7 +121,9 @@ let cities = [
             }
         ]
     },
-    { name: "Craiova",
+    {
+        name: "Craiova",
+        h: 160,
         nearby: [
             {
                 name: "Drobeta",
@@ -126,7 +142,9 @@ let cities = [
             }
         ]
     },
-    { name: "Rimnicu Vilcea",
+    {
+        name: "Rimnicu Vilcea",
+        h: 193,
         nearby: [
             {
                 name: "Craiova",
@@ -145,7 +163,9 @@ let cities = [
             }
         ]
     },
-    { name: "Pitesti",
+    {
+        name: "Pitesti",
+        h: 100,
         nearby: [
             {
                 name: "Craiova",
@@ -164,7 +184,9 @@ let cities = [
             }
         ]
     },
-    { name: "Sibiu",
+    {
+        name: "Sibiu",
+        h: 253,
         nearby: [
             {
                 name: "Oradea",
@@ -188,7 +210,9 @@ let cities = [
             }
         ]
     },
-    { name: "Fagaras",
+    {
+        name: "Fagaras",
+        h: 176,
         nearby: [
             {
                 name: "Sibiu",
@@ -202,7 +226,9 @@ let cities = [
             }
         ]
     },
-    { name: "Bucharest",
+    {
+        name: "Bucharest",
+        h: 0,
         nearby: [
             {
                 name: "Pitesti",
@@ -226,7 +252,9 @@ let cities = [
             }
         ]
     },
-    { name: "Giurgiu",
+    {
+        name: "Giurgiu",
+        h: 77,
         nearby: [
             {
                 name: "Bucharest",
@@ -235,7 +263,9 @@ let cities = [
             }
         ]
     },
-    { name: "Urziceni",
+    {
+        name: "Urziceni",
+        h: 80,
         nearby: [
             {
                 name: "Bucharest",
@@ -254,7 +284,9 @@ let cities = [
             }
         ]
     },
-    { name: "Eforie",
+    {
+        name: "Eforie",
+        h: 161,
         nearby: [
             {
                 name: "Hirsova",
@@ -263,7 +295,9 @@ let cities = [
             }
         ]
     },
-    { name: "Vaslui",
+    {
+        name: "Vaslui",
+        h: 199,
         nearby: [
             {
                 name: "Urziceni",
@@ -277,7 +311,9 @@ let cities = [
             }
         ]
     },
-    { name: "Hirsova",
+    {
+        name: "Hirsova",
+        h: 151,
         nearby: [
             {
                 name: "Urziceni",
@@ -291,7 +327,9 @@ let cities = [
             }
         ]
     },
-    { name: "Iasi",
+    {
+        name: "Iasi",
+        h: 226,
         nearby: [
             {
                 name: "Vaslui",
@@ -305,7 +343,9 @@ let cities = [
             }
         ]
     },
-    { name: "Neamt",
+    {
+        name: "Neamt",
+        h: 234,
         nearby: [
             {
                 name: "Iasi",
@@ -650,10 +690,19 @@ function aStarSearch(initialState, goalTest, actions, successor) {
 
     fringe.enqueue = function(item) {
         let added = false;
+
+        let heuristic = null;
+        // Finding heuristic value
+        for (let i = 0; i < cities.length; i++) {
+            if (cities[i].name === item.state) {
+                heuristic = cities[i].h;
+            }
+        }
+
         for (let i = 0; i < fringe.length; i++) {
             console.log("ITEM: ", fringe[i].state);
-            console.log("COST: ", fringe[i].pathCost(), "HEURISTIC COST: ", fringe[i].h, "TOTAL COST: ", fringe[i].pathCost() + fringe[i].h);
-            if (item.pathCost() + item.h < fringe[i].pathCost()) {
+            console.log("COST: ", fringe[i].pathCost(), "HEURISTIC COST: ", heuristic, "TOTAL COST: ", fringe[i].pathCost() + heuristic);
+            if (item.pathCost() + heuristic < fringe[i].pathCost()) {
                 fringe.splice(i, 0, item);
                 added = true;
                 return;

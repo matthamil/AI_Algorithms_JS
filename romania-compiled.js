@@ -7,7 +7,9 @@ var _createClass = (function () { function defineProperties(target, props) { for
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var cities = [{ name: "Oradea",
+var cities = [{
+    name: "Oradea",
+    h: 380,
     nearby: [{
         name: "Zerind",
         cost: 71,
@@ -17,7 +19,9 @@ var cities = [{ name: "Oradea",
         cost: 151,
         h: 253
     }]
-}, { name: "Zerind",
+}, {
+    name: "Zerind",
+    h: 374,
     nearby: [{
         name: "Oradea",
         cost: 71,
@@ -27,7 +31,9 @@ var cities = [{ name: "Oradea",
         cost: 75,
         h: 366
     }]
-}, { name: "Arad",
+}, {
+    name: "Arad",
+    h: 366,
     nearby: [{
         name: "Zerind",
         cost: 75,
@@ -41,7 +47,9 @@ var cities = [{ name: "Oradea",
         cost: 118,
         h: 329
     }]
-}, { name: "Timisoara",
+}, {
+    name: "Timisoara",
+    h: 329,
     nearby: [{
         name: "Arad",
         cost: 118,
@@ -51,7 +59,9 @@ var cities = [{ name: "Oradea",
         cost: 111,
         h: 244
     }]
-}, { name: "Lugoj",
+}, {
+    name: "Lugoj",
+    h: 244,
     nearby: [{
         name: "Timisoara",
         cost: 111,
@@ -61,7 +71,9 @@ var cities = [{ name: "Oradea",
         cost: 70,
         h: 241
     }]
-}, { name: "Mehadia",
+}, {
+    name: "Mehadia",
+    h: 241,
     nearby: [{
         name: "Lugoj",
         cost: 70,
@@ -71,7 +83,9 @@ var cities = [{ name: "Oradea",
         cost: 75,
         h: 242
     }]
-}, { name: "Drobeta",
+}, {
+    name: "Drobeta",
+    h: 242,
     nearby: [{
         name: "Mehadia",
         cost: 75,
@@ -81,7 +95,9 @@ var cities = [{ name: "Oradea",
         cost: 120,
         h: 160
     }]
-}, { name: "Craiova",
+}, {
+    name: "Craiova",
+    h: 160,
     nearby: [{
         name: "Drobeta",
         cost: 120,
@@ -95,7 +111,9 @@ var cities = [{ name: "Oradea",
         cost: 146,
         h: 193
     }]
-}, { name: "Rimnicu Vilcea",
+}, {
+    name: "Rimnicu Vilcea",
+    h: 193,
     nearby: [{
         name: "Craiova",
         cost: 146,
@@ -109,7 +127,9 @@ var cities = [{ name: "Oradea",
         cost: 80,
         h: 253
     }]
-}, { name: "Pitesti",
+}, {
+    name: "Pitesti",
+    h: 100,
     nearby: [{
         name: "Craiova",
         cost: 138,
@@ -123,7 +143,9 @@ var cities = [{ name: "Oradea",
         cost: 101,
         h: 0
     }]
-}, { name: "Sibiu",
+}, {
+    name: "Sibiu",
+    h: 253,
     nearby: [{
         name: "Oradea",
         cost: 151,
@@ -141,7 +163,9 @@ var cities = [{ name: "Oradea",
         cost: 80,
         h: 193
     }]
-}, { name: "Fagaras",
+}, {
+    name: "Fagaras",
+    h: 176,
     nearby: [{
         name: "Sibiu",
         cost: 99,
@@ -151,7 +175,9 @@ var cities = [{ name: "Oradea",
         cost: 211,
         h: 0
     }]
-}, { name: "Bucharest",
+}, {
+    name: "Bucharest",
+    h: 0,
     nearby: [{
         name: "Pitesti",
         cost: 101,
@@ -169,13 +195,17 @@ var cities = [{ name: "Oradea",
         cost: 211,
         h: 176
     }]
-}, { name: "Giurgiu",
+}, {
+    name: "Giurgiu",
+    h: 77,
     nearby: [{
         name: "Bucharest",
         cost: 90,
         h: 0
     }]
-}, { name: "Urziceni",
+}, {
+    name: "Urziceni",
+    h: 80,
     nearby: [{
         name: "Bucharest",
         cost: 85,
@@ -189,13 +219,17 @@ var cities = [{ name: "Oradea",
         cost: 142,
         h: 199
     }]
-}, { name: "Eforie",
+}, {
+    name: "Eforie",
+    h: 161,
     nearby: [{
         name: "Hirsova",
         cost: 86,
         h: 151
     }]
-}, { name: "Vaslui",
+}, {
+    name: "Vaslui",
+    h: 199,
     nearby: [{
         name: "Urziceni",
         cost: 142,
@@ -205,7 +239,9 @@ var cities = [{ name: "Oradea",
         cost: 92,
         h: 226
     }]
-}, { name: "Hirsova",
+}, {
+    name: "Hirsova",
+    h: 151,
     nearby: [{
         name: "Urziceni",
         cost: 98,
@@ -215,7 +251,9 @@ var cities = [{ name: "Oradea",
         cost: 86,
         h: 161
     }]
-}, { name: "Iasi",
+}, {
+    name: "Iasi",
+    h: 226,
     nearby: [{
         name: "Vaslui",
         cost: 92,
@@ -225,7 +263,9 @@ var cities = [{ name: "Oradea",
         cost: 87,
         h: 234
     }]
-}, { name: "Neamt",
+}, {
+    name: "Neamt",
+    h: 234,
     nearby: [{
         name: "Iasi",
         cost: 87,
@@ -576,10 +616,19 @@ function aStarSearch(initialState, goalTest, actions, successor) {
 
     fringe.enqueue = function (item) {
         var added = false;
+
+        var heuristic = null;
+        // Finding heuristic value
+        for (var i = 0; i < cities.length; i++) {
+            if (cities[i].name === item.state) {
+                heuristic = cities[i].h;
+            }
+        }
+
         for (var i = 0; i < fringe.length; i++) {
             console.log("ITEM: ", fringe[i].state);
-            console.log("COST: ", fringe[i].pathCost(), "HEURISTIC COST: ", fringe[i].h, "TOTAL COST: ", fringe[i].pathCost() + fringe[i].h);
-            if (item.pathCost() + item.h < fringe[i].pathCost()) {
+            console.log("COST: ", fringe[i].pathCost(), "HEURISTIC COST: ", heuristic, "TOTAL COST: ", fringe[i].pathCost() + heuristic);
+            if (item.pathCost() + heuristic < fringe[i].pathCost()) {
                 fringe.splice(i, 0, item);
                 added = true;
                 return;
